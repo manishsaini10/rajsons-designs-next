@@ -33,18 +33,29 @@ export const navigation = [
 
 export const mainNavigation = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us.html" },
+  {
+    label: "Company",
+    href: "/about-us.html",
+    children: [
+      { label: "Company Profile", href: "/about-us.html" },
+      { label: "About Yamunanagar", href: "/website-designing-in-jagadhri.html" },
+      { label: "Our Portfolio", href: "/our-portfolio.html" },
+    ],
+  },
   {
     label: "Services",
     href: "/services.html",
     children: [
       { label: "Web Design Services", href: "/web-design-services-2.html" },
+      { label: "Dynamic Websites", href: "/dynamic-websites.html" },
       { label: "eCommerce Solutions", href: "/ecommerce-solutions.html" },
       { label: "Affordable Static Websites", href: "/affordable-static-websites.html" },
-      { label: "Web Hosting Services", href: "/web-hosting-services.html" },
       { label: "SEO Services", href: "/seo-services.html" },
+      { label: "Web Hosting Services", href: "/web-hosting-services.html" },
     ],
   },
+  { label: "Packages", href: "/web-design-packages.html" },
+  { label: "Blog", href: "/blog.html" },
   { label: "Contact Us", href: "/contact-us.html" },
 ];
 

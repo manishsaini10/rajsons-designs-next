@@ -1,39 +1,72 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
 import { seoContent } from "@/lib/site-data";
 import Sidebar from "@/components/Sidebar";
+import { Search, BarChart3, Globe, Target, TrendingUp, Award } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "SEO Services",
-  description: "RajSonsDesigns.com offers quality Search Engine Optimization / SEO Services and Internet Marketing Solutions. Guaranteed Top 10 search engine ranking on Google, Yahoo and MSN.",
-  keywords: ["seo services", "search engine optimization", "internet marketing", "guaranteed seo", "seo company india", "white hat seo"],
-};
+const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const } }) };
 
 export default function SEOPage() {
   return (
     <>
-      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2a4a70] py-8 md:py-12">
-        <div className="mx-auto max-w-7xl px-4">
-          <h1 className="text-3xl font-bold text-white md:text-4xl">SEO Services</h1>
-          <p className="mt-2 text-sm text-gray-300">
-            <Link href="/" className="text-[#f7941e] hover:underline">Home</Link> &rarr; SEO Services
-          </p>
+      <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(247,148,30,0.08),transparent_50%)]" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <motion.div initial="hidden" animate="visible">
+            <motion.h1 variants={fadeUp} custom={0} className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">SEO Services</motion.h1>
+            <motion.p variants={fadeUp} custom={1} className="mt-3 text-sm text-gray-400">
+              <a href="/" className="text-[#f7941e] hover:text-[#e5840e] transition-colors">Home</a>
+              <span className="mx-2 text-gray-600">/</span>
+              <span className="text-gray-300">SEO Services</span>
+            </motion.p>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <p className="text-base leading-relaxed text-gray-700">{seoContent.intro}</p>
-            {seoContent.paragraphs.map((p, i) => (
-              <p key={i} className="mt-4 text-base leading-relaxed text-gray-700">{p}</p>
-            ))}
-          </div>
-          <div>
-            <Sidebar />
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-12 lg:grid-cols-3">
+            <div className="lg:col-span-2">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+                <motion.p variants={fadeUp} custom={0} className="text-lg text-gray-700 leading-relaxed font-medium">{seoContent.intro}</motion.p>
+                {seoContent.paragraphs.map((p, i) => (
+                  <motion.p key={i} variants={fadeUp} custom={i + 1} className="mt-5 text-base leading-relaxed text-gray-600">{p}</motion.p>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial="hidden" whileInView="visible" viewport={{ once: true }}
+                className="mt-10 grid gap-4 sm:grid-cols-3"
+              >
+                {[
+                  { icon: Search, label: "On-Page SEO" },
+                  { icon: Globe, label: "Off-Page SEO" },
+                  { icon: BarChart3, label: "Technical SEO" },
+                  { icon: Target, label: "Local SEO" },
+                  { icon: TrendingUp, label: "Rank Tracking" },
+                  { icon: Award, label: "White Hat" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    variants={fadeUp} custom={i}
+                    className="group rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-5 text-center shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#f7941e]/20"
+                  >
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#1e3a5f] to-[#2a4a70] shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:from-[#f7941e] group-hover:to-[#e5840e]">
+                      <item.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <p className="text-sm font-medium text-gray-700">{item.label}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              <Sidebar />
+            </motion.div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

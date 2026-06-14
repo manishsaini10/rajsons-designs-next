@@ -96,15 +96,24 @@ body {
   z-index: 100;
   transition: all 0.3s;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 .feedback-btn:hover {
   background: #e5840e;
-  padding: 10px 22px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {
   .feedback-btn {
-    display: none;
+    font-size: 11px;
+    padding: 6px 14px;
+    top: 40%;
+    letter-spacing: 0.3px;
+  }
+  .feedback-btn:hover {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 }
 
