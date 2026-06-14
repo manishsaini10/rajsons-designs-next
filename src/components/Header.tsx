@@ -44,8 +44,8 @@ export default function Header() {
     <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled ? "shadow-lg" : ""}`}>
       {/* Top Bar */}
       <div className="bg-[#1e3a5f] text-white text-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between max-lg:justify-end px-6 py-1.5">
+          <div className="hidden items-center gap-4 lg:flex">
             <a href="/web-design-packages.html" className="text-xs text-white/80 hover:text-[#f7941e] transition-colors font-semibold animate-pulse">
               Web Designing Packages
             </a>
@@ -66,20 +66,29 @@ export default function Header() {
               Request a Quote
             </a>
             <div className="flex items-center gap-2">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/60 hover:text-[#f7941e] transition-colors"
-                  aria-label={s.name}
-                >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
-                    <path d={socialIcons[s.icon]} />
-                  </svg>
-                </a>
-              ))}
+              {socialLinks.map((s) => {
+                const brandColors: Record<string, string> = {
+                  facebook: "text-[#1877F2]",
+                  twitter: "text-[#000000]",
+                  linkedin: "text-[#0A66C2]",
+                  youtube: "text-[#FF0000]",
+                  instagram: "text-[#E4405F]",
+                };
+                return (
+                  <a
+                    key={s.name}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${brandColors[s.icon] || "text-white/60"} hover:opacity-80 transition-opacity`}
+                    aria-label={s.name}
+                  >
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                      <path d={socialIcons[s.icon]} />
+                    </svg>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -88,12 +97,8 @@ export default function Header() {
       {/* Main Navigation */}
       <div className={`transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md" : "bg-white"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
-          <Link href="/" className="flex items-center gap-3 group" title="RajSons Designs">
-            <img src="/images/logo.png" alt="RajSonsDesigns.com Logo" className="h-10 w-auto transition-transform group-hover:scale-105" />
-            <div className="hidden sm:block">
-              <p className="text-sm font-bold text-[#1e3a5f] leading-tight">RajSonsDesigns.com</p>
-              <p className="text-[10px] text-gray-500 tracking-wider uppercase">Web Development Company</p>
-            </div>
+          <Link href="/" className="flex items-center group" title="RajSons Designs">
+            <img src="/images/logo.png" alt="RajSonsDesigns.com Logo" className="h-14 w-auto transition-transform group-hover:scale-105" />
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" role="navigation" aria-label="Main navigation">
@@ -179,70 +184,38 @@ export default function Header() {
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <div className="space-y-1 px-6 pb-6 pt-3">
-              <div className="mb-3 border-b border-gray-100 pb-3">
-                <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-2 text-sm font-semibold text-[#1e3a5f]">
-                  <Phone size={14} className="text-[#f7941e]" />
-                  {siteConfig.phone}
-                </a>
-              </div>
-              {mainNavigation.map((item) =>
-                item.children ? (
-                  <div key={item.label}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block rounded-lg px-4 py-2.5 text-sm font-medium ${
-                        isActive(item.href) ? "bg-[#1e3a5f] text-white" : "text-gray-700 hover:bg-gray-50"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                    <div className="ml-4 mt-1 space-y-1 border-l-2 border-[#f7941e]/30 pl-4">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          className={`block rounded-lg px-4 py-2 text-sm ${
-                            isActive(child.href) ? "text-[#f7941e] font-medium" : "text-gray-600 hover:text-[#f7941e]"
-                          }`}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`block rounded-lg px-4 py-2.5 text-sm font-medium ${
-                      isActive(item.href) ? "bg-[#1e3a5f] text-white" : "text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-              <div className="mt-4 border-t border-gray-100 pt-4">
-                <a
-                  href="/request-quote.html"
-                  onClick={() => setMobileOpen(false)}
-                  className="block w-full rounded-lg bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-3 text-center text-sm font-bold text-white shadow-md"
-                >
-                  Request a Quote
-                </a>
-                <div className="mt-3 flex justify-center gap-3">
-                  {socialLinks.map((s) => (
-                    <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#f7941e]" aria-label={s.name}>
-                      <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+            <div className="space-y-4 px-6 pb-6 pt-4">
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="flex items-center justify-center gap-3 rounded-xl bg-[#1e3a5f] px-4 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#2a4a70]"
+              >
+                <Phone size={18} className="text-[#f7941e]" />
+                {siteConfig.phone}
+              </a>
+              <a
+                href="/request-quote.html"
+                onClick={() => setMobileOpen(false)}
+                className="block w-full rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-3.5 text-center text-base font-bold text-white shadow-md transition-all hover:shadow-lg"
+              >
+                Request a Quote
+              </a>
+              <div className="flex justify-center gap-3 pt-2">
+                {socialLinks.map((s) => {
+                  const brandColors: Record<string, string> = {
+                    facebook: "text-[#1877F2]",
+                    twitter: "text-[#000000]",
+                    linkedin: "text-[#0A66C2]",
+                    youtube: "text-[#FF0000]",
+                    instagram: "text-[#E4405F]",
+                  };
+                  return (
+                    <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className={`${brandColors[s.icon] || "text-gray-400"} hover:opacity-80 transition-opacity`} aria-label={s.name}>
+                      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
                         <path d={socialIcons[s.icon]} />
                       </svg>
                     </a>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             </div>
           </motion.nav>

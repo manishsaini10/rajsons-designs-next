@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/site-data";
 
 export const dynamic = "force-static";
 
-const baseUrl = "https://www.rajsonsdesigns.com";
+const baseUrl = process.env.SITE_URL || `https://www.${siteConfig.name.toLowerCase()}`;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [

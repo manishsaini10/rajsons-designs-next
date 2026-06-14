@@ -19,6 +19,7 @@ export default function ServicesPage() {
     <>
       <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(247,148,30,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.06]" />
         <div className="absolute top-10 left-10 h-64 w-64 rounded-full border border-[#f7941e]/10 animate-pulse" style={{ animationDuration: '10s' }} />
         
         <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -85,3 +86,4 @@ export default function ServicesPage() {
     </>
   );
 }
+

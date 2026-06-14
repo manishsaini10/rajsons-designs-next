@@ -8,10 +8,12 @@ import "./globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
+const siteSuffix = "Website Design in Yamunanagar | Digital Marketing Company in Yamunanagar/Jagadhri | website development company in yamunanagar | Website Designing company in Yamunanagar";
+
 export const metadata: Metadata = {
   title: {
     default: "Website Designing and Development in Yamunanagar Haryana.",
-    template: "%s – Website Design in Yamunanagar | Digital Marketing Company in Yamunanagar/Jagadhri",
+    template: `%s – ${siteSuffix}`,
   },
   description: "A website designing company in Yamunanagar. We offer affordable website development and outsourcing services by professional web designers with a 100% money-back guarantee.",
   keywords: ["best website designing company in yamunanagar", "web development company yamunanagar", "web designers yamunanagar", "website design company yamunanagar", "website designers", "website development company in yamunanagar", "website designing", "it companies in yamunanagar", "website developer near me", "ecommerce website solution in yamunanagar", "dynamic website design in yamunanagar", "static website design", "social media marketing companies"],
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     title: "Website Designing and Development in Yamunanagar Haryana.",
     description: "A website designing company in Yamunanagar. We offer affordable website development and outsourcing services by professional web designers with a 100% money-back guarantee.",
     url: "https://www.rajsonsdesigns.com",
-    siteName: "Website Design in Yamunanagar | Digital Marketing Company in Yamunanagar/Jagadhri | website development company in yamunanagar | Website Designing company in Yamunanagar",
+    siteName: siteSuffix,
     locale: "en_US",
     type: "website",
   },
@@ -36,7 +38,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://www.rajsonsdesigns.com/" />
         <meta name="google" content="nositelinkssearchbox" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-85010264-1" />
         <script dangerouslySetInnerHTML={{
@@ -100,7 +101,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:p-2 focus:text-black focus:rounded">
           Skip to main content
         </a>
-        <a href="https://www.rajsonsdesigns.com/contact-us.html" className="feedback-btn">Feedback</a>
+        <a href="/contact-us.html" className="feedback-btn">Feedback</a>
         <Header />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />

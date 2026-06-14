@@ -64,7 +64,7 @@ export const socialLinks = [
   { name: "Facebook", url: "http://www.facebook.com/rajsonsdesigns", icon: "facebook" },
   { name: "LinkedIn", url: "http://www.linkedin.com/in/rajsonsdesigns", icon: "linkedin" },
   { name: "Email", url: "/contact-us.html", icon: "email" },
-  { name: "RSS", url: "https://www.rajsonsdesigns.com/?feed=rss", icon: "rss" },
+  { name: "RSS", url: "/blog.html", icon: "rss" },
 ];
 
 export const homeSliderSlides = [
@@ -96,12 +96,12 @@ export const homeSliderSlides = [
   },
   {
     title: "ECOMMERCE WEBSITES",
-    subtitle: "Creating powerful & contemporary Online Stores to transform your visitors into potential buyers. Let our experts work for you...",
+    subtitle: "Powerful online stores that transform visitors into buyers",
     description: "Easy to manage, deliver more revenues",
     cta1: { label: "Get it now", href: "/ecommerce-solutions.html" },
     cta2: { label: "Find out more", href: "/ecommerce-solutions.html" },
-    image: "ecommerceservices.png",
-    bg: "ecommerce-bg.jpg",
+    image: "web-design-services.png",
+    bg: "slide-rev-bg1.jpg",
   },
 ];
 

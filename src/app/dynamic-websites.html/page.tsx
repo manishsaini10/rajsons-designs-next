@@ -13,6 +13,7 @@ export default function DynamicWebsitesPage() {
     <>
       <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(247,148,30,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <motion.div initial="hidden" animate="visible">
             <motion.h1 variants={fadeUp} custom={0} className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">Dynamic Websites</motion.h1>
@@ -65,3 +66,4 @@ export default function DynamicWebsitesPage() {
     </>
   );
 }
+
