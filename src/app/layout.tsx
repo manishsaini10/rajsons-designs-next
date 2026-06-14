@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   keywords: ["best website designing company in yamunanagar", "web development company yamunanagar", "web designers yamunanagar", "website design company yamunanagar", "website designers", "website development company in yamunanagar", "website designing", "it companies in yamunanagar", "website developer near me", "ecommerce website solution in yamunanagar", "dynamic website design in yamunanagar", "static website design", "social media marketing companies"],
   metadataBase: new URL("https://www.rajsonsdesigns.com"),
   robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.rajsonsdesigns.com/" },
   openGraph: {
     title: "Website Designing and Development in Yamunanagar Haryana.",
     description: "A website designing company in Yamunanagar. We offer affordable website development and outsourcing services by professional web designers with a 100% money-back guarantee.",

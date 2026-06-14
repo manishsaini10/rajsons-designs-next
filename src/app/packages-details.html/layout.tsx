@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Detailed information about RajSonsDesigns web design and development packages. Compare plans and choose the best option for your business.",
   keywords: ["packages details", "web design packages details", "website plans", "web development packages", "website design packages comparison"],
   openGraph: { title: "Packages Details", description: "Detailed information about RajSonsDesigns web design and development packages." },
+  alternates: { canonical: "https://www.rajsonsdesigns.com/packages-details.html" },
   twitter: { title: "Packages Details", description: "Detailed information about RajSonsDesigns web design and development packages." },
 };
 

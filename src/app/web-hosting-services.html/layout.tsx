@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Reliable web hosting services by RajSonsDesigns. Affordable hosting plans with excellent uptime and support for your website in Yamunanagar.",
   keywords: ["web hosting services", "website hosting", "domain registration", "hosting plans", "web hosting yamunanagar"],
   openGraph: { title: "Web Hosting Services", description: "Reliable web hosting services by RajSonsDesigns in Yamunanagar." },
+  alternates: { canonical: "https://www.rajsonsdesigns.com/web-hosting-services.html" },
   twitter: { title: "Web Hosting Services", description: "Reliable web hosting services by RajSonsDesigns in Yamunanagar." },
 };
 

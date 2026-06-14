@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Shopping Cart Development - RajSonsDesigns as an eCommerce website development company helps improve online sales performance with affordable shopping cart solutions.",
   keywords: ["ecommerce solutions", "shopping cart development", "ecommerce website development", "online store design", "ecommerce yamunanagar"],
   openGraph: { title: "eCommerce Solutions", description: "Shopping Cart Development by RajSonsDesigns - affordable eCommerce solutions." },
+  alternates: { canonical: "https://www.rajsonsdesigns.com/ecommerce-solutions.html" },
   twitter: { title: "eCommerce Solutions", description: "Shopping Cart Development by RajSonsDesigns - affordable eCommerce solutions." },
 };
 
