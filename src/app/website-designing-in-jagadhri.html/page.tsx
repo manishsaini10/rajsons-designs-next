@@ -2,7 +2,7 @@
 
 import { jagadhriContent, blogPosts, sidebarLinks } from "@/lib/site-data";
 import { motion } from "framer-motion";
-import { Search, Calendar, FolderOpen, ExternalLink, ChevronRight } from "lucide-react";
+import { Search, Calendar, FolderOpen, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const } }) };
@@ -98,21 +98,21 @@ export default function JagadhriPage() {
                 </ul>
               </SidebarWidget>
 
-              <SidebarWidget title="Meta">
-                <ul className="space-y-2 text-sm text-gray-600">
-                  {[
-                    { label: "Log in", href: "#" },
-                    { label: "Entries feed", href: "https://www.rajsonsdesigns.com/?feed=rss" },
-                    { label: "Comments feed", href: "#" },
-                    { label: "WordPress.org", href: "https://wordpress.org" },
-                  ].map((item) => (
-                    <li key={item.label}>
-                      <a href={item.href} className="flex items-center gap-2 hover:text-[#f7941e] transition-colors">
-                        <ExternalLink size={14} /> {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+              <SidebarWidget title="Get in Touch">
+                <div className="space-y-3 text-sm text-gray-600">
+                  <p className="flex items-center gap-2">
+                    <Phone size={14} className="shrink-0 text-[#f7941e]" />
+                    <a href="tel:+91-8813951000" className="hover:text-[#f7941e] transition-colors">+91-8813951000</a>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Mail size={14} className="shrink-0 text-[#f7941e]" />
+                    <a href="mailto:info@rajsonsdesigns.com" className="hover:text-[#f7941e] transition-colors">info@rajsonsdesigns.com</a>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPin size={14} className="shrink-0 text-[#f7941e]" />
+                    <span>Yamunanagar, Haryana, India</span>
+                  </p>
+                </div>
               </SidebarWidget>
             </motion.div>
           </div>
