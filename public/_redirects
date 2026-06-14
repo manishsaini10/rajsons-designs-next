@@ -1,0 +1,20 @@
+# Cloudflare Pages redirects
+# Ensure .html URLs work without trailing slash
+/about-us.html /about-us.html/ 301
+/services.html /services.html/ 301
+/contact-us.html /contact-us.html/ 301
+/web-design-services-2.html /web-design-services-2.html/ 301
+/ecommerce-solutions.html /ecommerce-solutions.html/ 301
+/affordable-static-websites.html /affordable-static-websites.html/ 301
+/web-hosting-services.html /web-hosting-services.html/ 301
+/seo-services.html /seo-services.html/ 301
+/web-design-packages.html /web-design-packages.html/ 301
+/our-portfolio.html /our-portfolio.html/ 301
+/request-quote.html /request-quote.html/ 301
+/packages-details.html /packages-details.html/ 301
+/dynamic-websites.html /dynamic-websites.html/ 301
+/website-designing-in-jagadhri.html /website-designing-in-jagadhri.html/ 301
+/blog.html /blog.html/ 301
+
+# Handle 404s
+/* /404/index.html 404
