@@ -54,7 +54,32 @@ export const mainNavigation = [
       { label: "Web Hosting Services", href: "/web-hosting-services.html" },
     ],
   },
-  { label: "Packages", href: "/web-design-packages.html" },
+  { label: "360° Virtual Tour", href: "/360-virtual-tour.html" },
+  {
+    label: "ERP Software Solutions",
+    href: "/erp-software-solutions.html",
+    children: [
+      { label: "Hotel ERP Software", href: "/hotel-erp-software.html", icon: "Building2" },
+      { label: "Restaurant ERP Software", href: "/restaurant-erp-software.html", icon: "UtensilsCrossed" },
+      { label: "School ERP Software", href: "/school-erp-software.html", icon: "GraduationCap" },
+      { label: "Garment ERP Software", href: "/garment-erp-software.html", icon: "Shirt" },
+      { label: "Pharmacy ERP Software", href: "/pharmacy-erp-software.html", icon: "Pill" },
+      { label: "Hospital ERP Software", href: "/hospital-erp-software.html", icon: "Heart" },
+      { label: "Jewellery ERP Software", href: "/jewellery-erp-software.html", icon: "Gem" },
+      { label: "Textile ERP Software", href: "/textile-erp-software.html", icon: "Layers" },
+      { label: "Construction ERP", href: "/construction-erp-software.html", icon: "HardHat" },
+      { label: "Travel Agency ERP", href: "/travel-agency-erp-software.html", icon: "Compass" },
+      { label: "Vehicle Rental ERP", href: "/vehicle-rental-erp-software.html", icon: "Car" },
+      { label: "Printing Press ERP", href: "/printing-press-erp-software.html", icon: "Printer" },
+      { label: "Coaching Institute ERP", href: "/coaching-institute-erp-software.html", icon: "BookOpen" },
+      { label: "Diagnostic Lab ERP", href: "/diagnostic-lab-erp-software.html", icon: "Microscope" },
+      { label: "Clinic ERP", href: "/clinic-erp-software.html", icon: "Stethoscope" },
+      { label: "Laundry ERP", href: "/laundry-erp-software.html", icon: "Droplets" },
+      { label: "Timber ERP", href: "/timber-erp-software.html", icon: "Trees" },
+      { label: "Garment Store ERP", href: "/garment-store-erp-software.html", icon: "ShoppingBag" },
+      { label: "Legal Firm ERP", href: "/legal-firm-erp-software.html", icon: "Scale" },
+    ],
+  },
   { label: "Blog", href: "/blog.html" },
   { label: "Contact Us", href: "/contact-us.html" },
 ];
@@ -157,6 +182,8 @@ export const footerServices = [
   { name: "eCommerce Solutions", href: "/ecommerce-solutions.html" },
   { name: "Web Hosting Services", href: "/web-hosting-services.html" },
   { name: "SEO Services", href: "/seo-services.html" },
+  { name: "360° Virtual Tour", href: "/360-virtual-tour.html" },
+  { name: "ERP Software Solutions", href: "/erp-software-solutions.html" },
 ];
 
 export const footerTechIcons = [
@@ -573,6 +600,8 @@ export const sidebarLinks = [
   { label: "ECommerce Website Development", href: "/ecommerce-solutions.html" },
   { label: "Affordable Web Design", href: "/affordable-static-websites.html" },
   { label: "Web Hosting Services", href: "/web-hosting-services.html" },
+  { label: "360° Virtual Tour", href: "/360-virtual-tour.html" },
+  { label: "ERP Software Solutions", href: "/erp-software-solutions.html" },
 ];
 
 export const seoContent = {

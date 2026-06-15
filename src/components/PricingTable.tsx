@@ -12,7 +12,7 @@ export default function PricingTable({ plans, note }: PricingTableProps) {
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`group relative flex flex-col rounded-2xl border-2 p-8 transition-all duration-300 hover:-translate-y-2 ${
+            className={`group relative flex flex-col rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 hover:-translate-y-2 ${
               plan.highlighted
                 ? "border-[#f7941e] bg-gradient-to-b from-[#fff8f0] to-white shadow-xl shadow-[#f7941e]/10 hover:shadow-2xl hover:shadow-[#f7941e]/20"
                 : "border-gray-200 bg-white shadow-sm hover:shadow-xl hover:border-gray-300"

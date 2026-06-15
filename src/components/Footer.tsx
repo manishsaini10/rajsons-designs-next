@@ -123,12 +123,21 @@ export default function Footer() {
                     </svg>
                     <a href="https://www.rajsonsdesigns.com" className="hover:text-[#f7941e] transition-colors">www.rajsonsdesigns.com</a>
                   </p>
-                  <div className="flex items-center gap-2.5 pt-2">
-                    {socials.map((s) => (
-                      <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/60 transition-all hover:bg-[#f7941e] hover:text-white hover:scale-110" aria-label={s.name}>
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d={socialIcons[s.icon]} /></svg>
-                      </a>
-                    ))}
+                  <div className="flex items-center gap-2 pt-2">
+                    {socials.map((s) => {
+                      const brandFill: Record<string, string> = {
+                        facebook: "#1877F2",
+                        twitter: "#000000",
+                        linkedin: "#0A66C2",
+                        youtube: "#FF0000",
+                        instagram: "#E4405F",
+                      };
+                      return (
+                        <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-8 w-8 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110" aria-label={s.name}>
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
+                        </a>
+                      );
+                    })}
                   </div>
                 </address>
               )}
@@ -141,7 +150,7 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-6 py-5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All Rights Reserved. <a href="https://www.rajsonsdesigns.com" className="hover:text-[#f7941e] transition-colors">www.rajsonsdesigns.com</a></p>
-            <div className="flex items-center gap-4 text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs">
               <Link href="/" className="hover:text-[#f7941e] transition-colors">Home</Link>
               <span className="text-white/10">|</span>
               <Link href="/about-us.html" className="hover:text-[#f7941e] transition-colors">About Us</Link>

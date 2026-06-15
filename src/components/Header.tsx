@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Building2, UtensilsCrossed, GraduationCap, Shirt, Pill, Heart, Gem, Layers, HardHat, Compass, Car, Printer, BookOpen, Microscope, Stethoscope, Droplets, Trees, ShoppingBag, Scale } from "lucide-react";
 import { mainNavigation, siteConfig } from "@/lib/site-data";
 
 const socialIcons: Record<string, string> = {
@@ -26,6 +26,12 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const erpIconMap: Record<string, React.ElementType> = {
+    Building2, UtensilsCrossed, GraduationCap, Shirt, Pill, Heart, Gem, Layers,
+    HardHat, Compass, Car, Printer, BookOpen, Microscope, Stethoscope, Droplets,
+    Trees, ShoppingBag, Scale,
+  };
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -65,14 +71,14 @@ export default function Header() {
             >
               Request a Quote
             </a>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               {socialLinks.map((s) => {
-                const brandColors: Record<string, string> = {
-                  facebook: "text-[#1877F2]",
-                  twitter: "text-[#000000]",
-                  linkedin: "text-[#0A66C2]",
-                  youtube: "text-[#FF0000]",
-                  instagram: "text-[#E4405F]",
+                const brandFill: Record<string, string> = {
+                  facebook: "#1877F2",
+                  twitter: "#000000",
+                  linkedin: "#0A66C2",
+                  youtube: "#FF0000",
+                  instagram: "#E4405F",
                 };
                 return (
                   <a
@@ -80,10 +86,10 @@ export default function Header() {
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${brandColors[s.icon] || "text-white/60"} hover:opacity-80 transition-opacity`}
+                    className="group flex h-6 w-6 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110"
                     aria-label={s.name}
                   >
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                    <svg viewBox="0 0 24 24" className="h-3 w-3 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}>
                       <path d={socialIcons[s.icon]} />
                     </svg>
                   </a>
@@ -129,19 +135,47 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 6 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute left-0 top-full min-w-[220px] rounded-lg border border-gray-100 bg-white py-1.5 shadow-xl shadow-black/5 mt-0.5"
+                        className={`absolute left-1/2 -translate-x-1/2 top-full mt-0.5 rounded-lg border border-gray-100 bg-white shadow-xl shadow-black/5 ${
+                          item.label === "ERP Software Solutions"
+                            ? "w-[640px] p-5"
+                            : "min-w-[220px] py-1.5"
+                        }`}
                       >
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={`block px-4 py-2 text-sm transition-all hover:bg-gradient-to-r hover:from-[#f7941e]/10 hover:to-transparent ${
-                              isActive(child.href) ? "text-[#f7941e] font-semibold" : "text-gray-700 hover:text-[#f7941e]"
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
+                        {item.label === "ERP Software Solutions" ? (
+                          <div className="grid grid-cols-4 gap-2">
+                            {item.children.map((child) => {
+                              const Icon = (child as any).icon ? erpIconMap[(child as any).icon as string] : null;
+                              return (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  className={`flex items-center gap-3 rounded-lg p-3 text-sm transition-all hover:bg-gradient-to-r hover:from-[#f7941e]/10 hover:to-transparent ${
+                                    isActive(child.href) ? "text-[#f7941e] font-semibold" : "text-gray-700 hover:text-[#f7941e]"
+                                  }`}
+                                >
+                                  {Icon && (
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1e3a5f]/10 text-[#1e3a5f] transition-all group-hover:bg-[#f7941e]/10 group-hover:text-[#f7941e]">
+                                      <Icon size={16} />
+                                    </div>
+                                  )}
+                                  <span className="text-xs font-medium leading-tight">{child.label}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={`block px-4 py-2 text-sm transition-all hover:bg-gradient-to-r hover:from-[#f7941e]/10 hover:to-transparent ${
+                                isActive(child.href) ? "text-[#f7941e] font-semibold" : "text-gray-700 hover:text-[#f7941e]"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -184,38 +218,98 @@ export default function Header() {
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <div className="space-y-4 px-6 pb-6 pt-4">
-              <a
-                href={`tel:${siteConfig.phone}`}
-                className="flex items-center justify-center gap-3 rounded-xl bg-[#1e3a5f] px-4 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#2a4a70]"
-              >
-                <Phone size={18} className="text-[#f7941e]" />
-                {siteConfig.phone}
-              </a>
-              <a
-                href="/request-quote.html"
-                onClick={() => setMobileOpen(false)}
-                className="block w-full rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-3.5 text-center text-base font-bold text-white shadow-md transition-all hover:shadow-lg"
-              >
-                Request a Quote
-              </a>
-              <div className="flex justify-center gap-3 pt-2">
-                {socialLinks.map((s) => {
-                  const brandColors: Record<string, string> = {
-                    facebook: "text-[#1877F2]",
-                    twitter: "text-[#000000]",
-                    linkedin: "text-[#0A66C2]",
-                    youtube: "text-[#FF0000]",
-                    instagram: "text-[#E4405F]",
-                  };
-                  return (
-                    <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className={`${brandColors[s.icon] || "text-gray-400"} hover:opacity-80 transition-opacity`} aria-label={s.name}>
-                      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
-                        <path d={socialIcons[s.icon]} />
-                      </svg>
-                    </a>
-                  );
-                })}
+            <div className="px-6 pb-4 pt-2">
+              <div className="space-y-0.5">
+                {mainNavigation.map((item) =>
+                  item.children ? (
+                    <div key={item.label}>
+                      <button
+                        onClick={() => setDropdownOpen(dropdownOpen === item.label ? null : item.label)}
+                        className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition-all hover:bg-[#f7941e]/10 hover:text-[#f7941e]"
+                      >
+                        {item.label}
+                        <ChevronDown size={14} className={`transition-transform ${dropdownOpen === item.label ? "rotate-180" : ""}`} />
+                      </button>
+                      <AnimatePresence>
+                        {dropdownOpen === item.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden pl-4"
+                          >
+                            {item.children.map((child) => {
+                              const Icon = (child as any).icon ? erpIconMap[(child as any).icon as string] : null;
+                              return (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm transition-all ${
+                                    isActive(child.href) ? "text-[#f7941e] font-semibold" : "text-gray-600 hover:text-[#f7941e]"
+                                  }`}
+                                >
+                                  {Icon && (
+                                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#1e3a5f]/10 text-[#1e3a5f]">
+                                      <Icon size={14} />
+                                    </div>
+                                  )}
+                                  {child.label}
+                                </Link>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block rounded-lg px-4 py-3 text-sm font-medium transition-all ${
+                        isActive(item.href)
+                          ? "bg-[#1e3a5f] text-white"
+                          : "text-gray-700 hover:bg-[#f7941e]/10 hover:text-[#f7941e]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
+              </div>
+              <hr className="my-4 border-gray-100" />
+              <div className="space-y-3">
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="flex items-center justify-center gap-3 rounded-xl bg-[#1e3a5f] px-4 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#2a4a70]"
+                >
+                  <Phone size={18} className="text-[#f7941e]" />
+                  {siteConfig.phone}
+                </a>
+                <a
+                  href="/request-quote.html"
+                  onClick={() => setMobileOpen(false)}
+                  className="block w-full rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-3.5 text-center text-base font-bold text-white shadow-md transition-all hover:shadow-lg"
+                >
+                  Request a Quote
+                </a>
+                <div className="flex justify-center gap-2 pt-1">
+                  {socialLinks.map((s) => {
+                    const brandFill: Record<string, string> = {
+                      facebook: "#1877F2",
+                      twitter: "#000000",
+                      linkedin: "#0A66C2",
+                      youtube: "#FF0000",
+                      instagram: "#E4405F",
+                    };
+                    return (
+                      <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-8 w-8 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110" aria-label={s.name}>
+                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </motion.nav>

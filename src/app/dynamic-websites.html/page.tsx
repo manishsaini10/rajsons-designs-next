@@ -16,7 +16,7 @@ export default function DynamicWebsitesPage() {
         <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <motion.div initial="hidden" animate="visible">
-            <motion.h1 variants={fadeUp} custom={0} className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">Dynamic Websites</motion.h1>
+            <motion.h1 variants={fadeUp} custom={0} className="text-3xl sm:text-4xl font-bold text-white md:text-5xl lg:text-6xl">Dynamic Websites</motion.h1>
             <motion.p variants={fadeUp} custom={1} className="mt-3 text-sm text-gray-400">
               <a href="/" className="text-[#f7941e] hover:text-[#e5840e] transition-colors">Home</a>
               <span className="mx-2 text-gray-600">/</span>

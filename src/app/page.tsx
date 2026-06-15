@@ -26,7 +26,7 @@ function HeroSlider() {
   const bgImages = ["slide-rev-bg1.jpg", "website-design-services-bg.jpg", "website-design-services-bg.jpg", "slide-rev-bg1.jpg"];
 
   return (
-    <section className="relative h-[520px] overflow-hidden md:h-[600px]" role="region" aria-label="Hero Slider" aria-roledescription="carousel">
+    <section className="relative min-h-[420px] overflow-hidden sm:min-h-[520px] md:min-h-[600px]" role="region" aria-label="Hero Slider" aria-roledescription="carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -61,7 +61,7 @@ function HeroSlider() {
               </motion.span>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6 }}
-                className="mb-4 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+                className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
               >
                 {slide.subtitle}
               </motion.h1>
@@ -404,7 +404,7 @@ export default function HomePage() {
 
       {/* Looking For A Professional Company — CTA */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-fixed bg-center opacity-[0.07]" />
+        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover max-lg:bg-scroll bg-fixed bg-center opacity-[0.07]" />
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9fa]/50 to-white" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
           <motion.div

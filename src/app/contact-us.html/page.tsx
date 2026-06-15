@@ -33,7 +33,7 @@ export default function ContactPage() {
         
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <motion.div initial="hidden" animate="visible" variants={container}>
-            <motion.h1 variants={item} className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">Contact Us</motion.h1>
+            <motion.h1 variants={item} className="text-3xl sm:text-4xl font-bold text-white md:text-5xl lg:text-6xl">Contact Us</motion.h1>
             <motion.p variants={item} className="mt-3 text-sm text-gray-400">
               <a href="/" className="text-[#f7941e] hover:text-[#e5840e] transition-colors">Home</a>
               <span className="mx-2 text-gray-600">/</span>
