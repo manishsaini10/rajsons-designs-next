@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Camera, Globe, Smartphone, Check, ArrowRight, Eye, MapPin } from "lucide-react";
+import { Camera, Globe, Smartphone, Check, ArrowRight, Eye, MapPin, Play, Sparkles } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import VirtualTourHero from "@/components/VirtualTourHero";

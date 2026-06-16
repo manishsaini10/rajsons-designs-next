@@ -98,22 +98,42 @@ function HeroSlider() {
                 )}
               </motion.div>
             </div>
-            {slide.image && (
-              <motion.div
-                initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.7 }}
-                className="hidden lg:flex flex-1 items-center justify-center"
-              >
-                <Image 
-                  src={`/images/${slide.image}`} 
-                  alt={slide.title} 
-                  width={400} 
-                  height={400} 
-                  className="h-auto max-h-[400px] w-full max-w-[400px] object-contain drop-shadow-2xl" 
-                  priority
-                />
-              </motion.div>
-            )}
+            <div className="hidden lg:flex flex-1 items-center justify-center">
+              {slide.image ? (
+                <motion.div
+                  initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.7 }}
+                  className="flex flex-1 items-center justify-center"
+                >
+                  <Image 
+                    src={`/images/${slide.image}`} 
+                    alt={slide.title} 
+                    width={400} 
+                    height={400} 
+                    className="h-auto max-h-[400px] w-full max-w-[400px] object-contain drop-shadow-2xl" 
+                    priority
+                  />
+                </motion.div>
+              ) : slide.images ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.7 }}
+                  className="flex flex-wrap items-center justify-center gap-6"
+                >
+                  {slide.images.map((img, i) => (
+                    <Image 
+                      key={i}
+                      src={`/images/${img}`} 
+                      alt={slide.title} 
+                      width={120} 
+                      height={120} 
+                      className="h-20 w-auto object-contain drop-shadow-lg bg-white/10 p-2 rounded-xl backdrop-blur-sm" 
+                    />
+                  ))}
+                </motion.div>
+              ) : null}
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
