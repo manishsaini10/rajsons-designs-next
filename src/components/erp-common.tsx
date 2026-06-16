@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
@@ -57,7 +58,13 @@ export function ErpHero({
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={image} alt={title} className="h-full w-full object-cover" />
+        <Image 
+          src={image} 
+          alt={title} 
+          fill 
+          priority 
+          className="object-cover" 
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f36]/95 via-[#0f1f36]/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f36]/60 via-transparent to-transparent" />
       </div>

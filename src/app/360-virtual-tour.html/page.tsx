@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Camera, Globe, Smartphone, Check, ArrowRight, Eye, MapPin } from "lucide-react";
 import Link from "next/link";
+import AnimatedSection from "@/components/AnimatedSection";
+import VirtualTourHero from "@/components/VirtualTourHero";
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const } }) };
 
@@ -64,208 +66,234 @@ const gallery = [
 ];
 
 export default function VirtualTourPage() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <>
-      <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(247,148,30,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.06]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <motion.div initial="hidden" animate="visible">
-            <motion.h1 variants={fadeUp} custom={0} className="text-3xl sm:text-4xl font-bold text-white md:text-5xl lg:text-6xl">360° Virtual Tour Services in Yamunanagar, Haryana</motion.h1>
-            <motion.p variants={fadeUp} custom={1} className="mt-3 text-sm text-gray-400">
-              <a href="/" className="text-[#f7941e] hover:text-[#e5840e] transition-colors">Home</a>
-              <span className="mx-2 text-gray-600">/</span>
-              <span className="text-gray-300">360° Virtual Tour</span>
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="relative">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-[#f7941e] origin-left z-[60]"
+        style={{ scaleX }}
+      />
 
-      <section className="py-16 md:py-24">
+      <VirtualTourHero />
+
+      <section className="py-20 md:py-32 relative z-10">
         <div className="mx-auto max-w-7xl px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.h2 variants={fadeUp} custom={0} className="text-3xl font-bold text-[#1e3a5f] mb-6">
-              Turn Your Business Into a Virtual Experience
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-lg text-gray-700 leading-relaxed font-medium">
-              Professional 360° Virtual Tours published directly to your Google Business Profile to increase trust, walk-ins &amp; sales.
-            </motion.p>
-            <motion.p variants={fadeUp} custom={2} className="mt-5 text-base leading-relaxed text-gray-600">
-              In today&apos;s digital world, customers want to explore your space before they visit. A 360° virtual tour gives them that ability — letting them walk through your business from anywhere, at any time. RajSons Designs, a leading website designing and development company in Yamunanagar, in partnership with leading 360° tour professionals, brings you immersive virtual experiences that transform how customers see your business across India.
-            </motion.p>
-            <motion.p variants={fadeUp} custom={3} className="mt-5 text-base leading-relaxed text-gray-600">
-              Whether you run a hotel, restaurant, salon, retail store, school, or clinic — a 360° virtual tour on your Google Business Profile helps you stand out, build trust, and drive more foot traffic. Customers can &ldquo;step inside&rdquo; before ever walking through your door. We provide 360 virtual tour services in Yamunanagar, Haryana, Punjab, Himachal, Uttar Pradesh, Uttarakhand, and Rajasthan.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {features.map((item, i) => (
-              <motion.div
-                key={item.title}
-                variants={fadeUp} custom={i}
-                className="group rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-6 text-center shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#f7941e]/20"
-              >
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#1e3a5f] to-[#2a4a70] shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:from-[#f7941e] group-hover:to-[#e5840e]">
-                  <item.icon className="h-7 w-7 text-white" />
+          <AnimatedSection className="mb-16">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-[#1e3a5f] mb-6 leading-tight">
+                  Turn Your Business Into a <span className="text-[#f7941e]">Virtual Experience</span>
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Professional 360° Virtual Tours published directly to your Google Business Profile to increase trust, walk-ins & sales.
+                </p>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
+                  <p>In today's digital world, customers want to explore your space before they visit. A 360° virtual tour gives them that ability — letting them walk through your business from anywhere, at any time.</p>
+                  <p>RajSons Designs, a leading website designing and development company in Yamunanagar, brings you immersive virtual experiences that transform how customers see your business across India.</p>
                 </div>
-                <h3 className="text-base font-bold text-[#1e3a5f] mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+              <div className="relative group">
+                 <div className="absolute -inset-4 bg-gradient-to-tr from-[#f7941e]/20 to-[#1e3a5f]/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                 <img 
+                   src="https://images.unsplash.com/photo-1613442334138-b457f03695c4?auto=format&fit=crop&w=800&q=80" 
+                   alt="Virtual Tour Experience" 
+                   className="relative rounded-2xl shadow-2xl border border-white/50"
+                 />
+              </div>
+            </div>
+          </AnimatedSection>
 
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12"
-          >
-            <motion.h3 variants={fadeUp} custom={0} className="text-2xl font-bold text-[#1e3a5f] mb-6">
-              How It Works
-            </motion.h3>
-            <motion.div variants={fadeUp} custom={1} className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((item, i) => (
+              <AnimatedSection key={item.title} delay={i * 0.1} className="h-full">
+                <div className="group h-full rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md p-8 text-center shadow-xl shadow-black/5 hover:shadow-2xl hover:shadow-[#f7941e]/10 transition-all duration-500 hover:-translate-y-2 border-transparent hover:border-[#f7941e]/30">
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1e3a5f] to-[#2a4a70] shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:from-[#f7941e] group-hover:to-[#e5840e]">
+                    <item.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1e3a5f] mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection className="mt-24">
+            <h3 className="text-3xl font-bold text-[#1e3a5f] mb-12 text-center">How It Works</h3>
+            <div className="grid gap-8 sm:grid-cols-3">
               {[
                 { step: "01", title: "Photography", desc: "Our team captures your space with professional 360° photography equipment, ensuring every angle is covered with stunning clarity." },
                 { step: "02", title: "Integration", desc: "Your virtual tour is seamlessly connected to your Google Business Profile, optimized for both mobile and desktop viewing." },
                 { step: "03", title: "Go Live", desc: "Your immersive 360° tour goes live on Google, allowing customers to explore your business before they even visit." },
-              ].map((item) => (
-                <div key={item.step} className="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-lg transition-all">
-                  <span className="text-5xl font-extrabold text-[#f7941e]/10 absolute top-3 right-4">{item.step}</span>
-                  <h4 className="text-lg font-bold text-[#1e3a5f] mb-2 relative">{item.title}</h4>
-                  <p className="text-sm text-gray-600 leading-relaxed relative">{item.desc}</p>
+              ].map((item, i) => (
+                <div key={item.step} className="group relative rounded-3xl border border-white/50 bg-gradient-to-br from-white to-gray-50/50 p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                  <span className="text-8xl font-black text-[#f7941e]/5 absolute -top-4 -right-4 group-hover:scale-110 transition-transform duration-500">{item.step}</span>
+                  <div className="h-1 w-12 bg-[#f7941e] mb-6 rounded-full group-hover:w-20 transition-all duration-500" />
+                  <h4 className="text-xl font-bold text-[#1e3a5f] mb-3">{item.title}</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </AnimatedSection>
 
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12"
-          >
-            <motion.h2 variants={fadeUp} custom={0} className="text-2xl font-bold text-[#1e3a5f] mb-2">
-              Live Demo – 360° Virtual Tour
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-base text-gray-600 mb-6">
-              Explore an interactive 360° virtual tour. Drag to look around, click to navigate between scenes.
-            </motion.p>
-            <motion.div variants={fadeUp} custom={2} className="relative overflow-hidden rounded-2xl shadow-lg bg-gray-100" style={{ paddingBottom: "56.25%" }}>
+          <AnimatedSection id="demo" className="mt-24 scroll-mt-24">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-[#1e3a5f] mb-3">Live Demo – 360° Virtual Tour</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">Explore an interactive 360° virtual tour. Drag to look around, click to navigate between scenes.</p>
+            </div>
+            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl bg-black p-1 backdrop-blur-sm border border-white/40" style={{ minHeight: "400px" }}>
               <iframe
                 src="https://app.cloudpano.com/tours/t1LtFvj5DK"
-                className="absolute inset-0 w-full h-full border-0"
+                className="h-full w-full border-0"
+                style={{ minHeight: "400px" }}
                 allowFullScreen
-                loading="lazy"
-                allow="gyroscope; accelerometer; xr-spatial-tracking"
+                allow="fullscreen; gyroscope; accelerometer; magnetometer; xr-spatial-tracking"
                 title="360° Virtual Tour Demo"
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </AnimatedSection>
 
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12 rounded-2xl bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] p-8 md:p-12"
-          >
-            <motion.h3 variants={fadeUp} custom={0} className="text-2xl font-bold text-white mb-6">
-              Why Your Business Needs a 360° Virtual Tour
-            </motion.h3>
-            <motion.ul variants={fadeUp} custom={1} className="space-y-3">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-sm text-white/80">
-                  <Check size={16} className="mt-0.5 shrink-0 text-[#f7941e]" />
-                  {b}
-                </li>
-              ))}
-            </motion.ul>
-          </motion.div>
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12 rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
-          >
-            <motion.h2 variants={fadeUp} custom={0} className="text-2xl font-bold text-[#1e3a5f] mb-4">
-              360 Virtual Tour Services Across India
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-base text-gray-600 mb-6">
-              We provide professional 360 degree virtual tour services across all districts of Haryana and Punjab, plus major cities in Himachal Pradesh, Uttar Pradesh, Uttarakhand, and Rajasthan. Our expert team captures stunning panoramic views for hotels, schools, restaurants, retail stores, clinics, gyms, and more — helping your business appear on Google Street View and Google Business Profile.
-            </motion.p>
-            <motion.div variants={fadeUp} custom={2} className="mb-6">
-              <h4 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wider mb-3 flex items-center gap-2">
-                <MapPin size={14} className="text-[#f7941e]" /> Haryana — All Districts
-              </h4>
-              <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-4">
-                {haryanaDistricts.map((d) => (
-                  <div key={d} className="rounded-lg bg-gray-50 p-2.5 text-sm font-medium text-[#1e3a5f]">
-                    {d}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div variants={fadeUp} custom={3} className="mb-6">
-              <h4 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wider mb-3 flex items-center gap-2">
-                <MapPin size={14} className="text-[#f7941e]" /> Punjab — All Districts
-              </h4>
-              <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-4">
-                {punjabDistricts.map((d) => (
-                  <div key={d} className="rounded-lg bg-gray-50 p-2.5 text-sm font-medium text-[#1e3a5f]">
-                    {d}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div variants={fadeUp} custom={4}>
-              <h4 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wider mb-3 flex items-center gap-2">
-                <MapPin size={14} className="text-[#f7941e]" /> Other States
-              </h4>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                {stateLocations.map((loc) => (
-                  <div key={loc.name} className="rounded-lg bg-gray-50 p-2.5 text-sm font-medium text-[#1e3a5f]">
-                    {loc.name}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="mt-12"
-          >
-            <motion.h3 variants={fadeUp} custom={0} className="text-2xl font-bold text-[#1e3a5f] mb-6">
-              Our Gallery – 360° Virtual Tour Samples
-            </motion.h3>
-            <motion.div variants={fadeUp} custom={1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {gallery.map((img, i) => (
-                <div key={i} className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-300">
-                  <img src={img.src} alt={img.alt} className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <AnimatedSection className="mt-24 overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] p-8 md:p-16 relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#f7941e]/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
+            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-8">Why Your Business Needs a 360° Virtual Tour</h3>
+                <div className="grid gap-4">
+                  {benefits.map((b, i) => (
+                    <motion.div 
+                      key={b} 
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-4 text-white/90 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"
+                    >
+                      <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f7941e] text-white">
+                        <Check size={14} />
+                      </div>
+                      <span className="text-sm font-medium">{b}</span>
+                    </motion.div>
+                  ))}
                 </div>
+              </div>
+              <div className="hidden lg:block">
+                 <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f36] via-transparent to-transparent z-10" />
+                    <img 
+                      src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" 
+                      className="rounded-2xl shadow-2xl opacity-60" 
+                      alt="Interior"
+                    />
+                 </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection className="mt-24">
+            <div className="rounded-[2.5rem] border border-white/60 bg-white/40 backdrop-blur-md p-8 md:p-16 shadow-xl">
+              <h2 className="text-3xl font-bold text-[#1e3a5f] mb-6">360 Virtual Tour Services Across India</h2>
+              <p className="text-lg text-gray-600 mb-12 max-w-4xl">
+                We provide professional 360 degree virtual tour services across all districts of Haryana and Punjab, plus major cities in Himachal Pradesh, Uttar Pradesh, Uttarakhand, and Rajasthan.
+              </p>
+              
+              <div className="space-y-10">
+                <div>
+                  <h4 className="text-sm font-black text-[#f7941e] uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+                    <MapPin size={18} /> Haryana Districts
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {haryanaDistricts.map((d) => (
+                      <span key={d} className="rounded-full bg-white/80 px-4 py-2 text-xs font-bold text-[#1e3a5f] shadow-sm border border-gray-100 hover:bg-[#f7941e] hover:text-white transition-all cursor-default">
+                        {d}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-10">
+                  <div>
+                    <h4 className="text-sm font-black text-[#f7941e] uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+                      <MapPin size={18} /> Punjab Districts
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {punjabDistricts.map((d) => (
+                        <span key={d} className="rounded-full bg-white/80 px-4 py-2 text-xs font-bold text-[#1e3a5f] shadow-sm border border-gray-100 hover:bg-[#f7941e] hover:text-white transition-all cursor-default">
+                          {d}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-[#f7941e] uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+                      <MapPin size={18} /> Other States
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      {stateLocations.map((loc) => (
+                        <div key={loc.name} className="rounded-xl bg-[#1e3a5f] p-4 text-sm font-bold text-white shadow-lg hover:scale-105 transition-transform text-center">
+                          {loc.name}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection className="mt-24">
+            <h3 className="text-3xl font-bold text-[#1e3a5f] mb-12 text-center">Our Gallery – Immersive Previews</h3>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {gallery.map((img, i) => (
+                <motion.div 
+                  key={i} 
+                  whileHover={{ y: -10 }}
+                  className="group relative overflow-hidden rounded-[2rem] shadow-lg aspect-[4/3]"
+                >
+                  <img src={img.src} alt={img.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/80 via-[#1e3a5f]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                     <p className="text-white font-bold text-sm tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{img.alt}</p>
+                  </div>
+                </motion.div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.05]" />
+      <section className="relative py-24 md:py-36 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0f1f36]" />
+        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.1]" />
+        <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent opacity-10" />
+        
         <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
           >
-            <Eye size={48} className="mx-auto mb-4 text-[#f7941e]" />
-            <h2 className="mb-3 text-2xl font-bold text-white md:text-3xl">Ready to Give Your Customers a Virtual Experience?</h2>
-            <p className="mb-6 text-base text-gray-300">Let your customers explore your space from anywhere — and watch your walk-ins grow.</p>
+            <div className="inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-[#f7941e] text-white shadow-2xl shadow-[#f7941e]/40 mb-8 animate-bounce">
+              <Eye size={40} />
+            </div>
+            <h2 className="mb-6 text-4xl font-black text-white md:text-6xl leading-tight">Ready to Give Your Customers a <span className="text-[#f7941e]">Virtual Experience?</span></h2>
+            <p className="mb-10 text-xl text-gray-300">Let your customers explore your space from anywhere — and watch your walk-ins grow.</p>
+            
             <Link
               href="/contact-us.html"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-8 py-4 font-bold text-white shadow-lg shadow-[#f7941e]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#f7941e]/30 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-[#f7941e] px-12 py-6 font-black text-white shadow-2xl shadow-[#f7941e]/30 transition-all duration-300 hover:shadow-[#f7941e]/50 hover:-translate-y-1 hover:scale-105 active:scale-95"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-              Get Started Today
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              Start Your Virtual Tour
+              <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

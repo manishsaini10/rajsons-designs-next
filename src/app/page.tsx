@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,9 +35,16 @@ function HeroSlider() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/images/${bgImages[current]}')` }}
-        />
+          className="absolute inset-0"
+        >
+          <Image
+            src={`/images/${bgImages[current]}`}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f36]/95 via-[#1a3355]/85 to-[#0f1f36]/60" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(247,148,30,0.08),transparent_50%)]" />
@@ -96,7 +104,14 @@ function HeroSlider() {
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="hidden lg:flex flex-1 items-center justify-center"
               >
-                <img src={`/images/${slide.image}`} alt="" className="h-auto max-h-[400px] w-full max-w-[400px] object-contain drop-shadow-2xl" />
+                <Image 
+                  src={`/images/${slide.image}`} 
+                  alt={slide.title} 
+                  width={400} 
+                  height={400} 
+                  className="h-auto max-h-[400px] w-full max-w-[400px] object-contain drop-shadow-2xl" 
+                  priority
+                />
               </motion.div>
             )}
           </motion.div>
@@ -303,12 +318,12 @@ export default function HomePage() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-2xl shadow-lg">
-                <img src="/images/website-development-company.png" alt="Website Development Company" className="w-full h-auto" />
+                <Image src="/images/website-development-company.png" alt="Website Development Company" width={600} height={400} className="w-full h-auto" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 to-transparent" />
               </div>
               <div className="mt-4 flex items-center gap-3">
                 {techIcons.map((src) => (
-                  <img key={src} src={src} alt="tech" className="h-10 w-auto rounded-lg bg-white p-1.5 shadow-sm" />
+                  <Image key={src} src={src} alt="tech" width={60} height={40} className="h-10 w-auto rounded-lg bg-white p-1.5 shadow-sm" />
                 ))}
                 <span className="text-xs text-gray-500 ml-2">+ More technologies</span>
               </div>
@@ -327,10 +342,10 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-[#1e3a5f] md:text-4xl">Our Services – Complete Digital Solutions for Your Business</h2>
-            <p className="mt-4 max-w-4xl mx-auto text-base text-gray-600">
+            <p className="mt-4 max-w-4xl mx-auto text-base text-gray-700">
               Looking for a professional and affordable <strong>website designing company in Yamunanagar</strong>? RajSons Designs is a trusted name for creative, responsive, and result-driven web design services. We help businesses build strong online identities with modern, SEO-friendly websites.
             </p>
-            <p className="mt-3 max-w-4xl mx-auto text-base text-gray-600">
+            <p className="mt-3 max-w-4xl mx-auto text-base text-gray-700">
               From websites and mobile apps to branding and full-scale digital solutions, we offer everything your business needs under one roof.
             </p>
           </motion.div>
@@ -379,7 +394,7 @@ export default function HomePage() {
                       {tab.id === "mobile" ? "Mobile App Development – 100% Responsive Websites and Apps" : ""}
                       {tab.id === "seo" ? "SEO – Drive Traffic, Rankings & Real Results" : ""}
                     </h3>
-                    <p className="text-base text-gray-600 leading-relaxed mb-6">{tab.content}</p>
+                    <p className="text-base text-gray-700 leading-relaxed mb-6">{tab.content}</p>
                     <h4 className="font-bold text-[#1e3a5f] mb-3"><span className="text-[#f7941e]">Our {tab.label.toLowerCase()} expertise includes:</span></h4>
                     <ul className="space-y-2 mb-6">
                       {tab.features.map((f) => (
@@ -388,11 +403,17 @@ export default function HomePage() {
                         </li>
                       ))}
                     </ul>
-                    {tab.extra && <p className="text-sm text-gray-600">{tab.extra}</p>}
+                    {tab.extra && <p className="text-sm text-gray-700">{tab.extra}</p>}
                   </div>
                   <div className="flex items-center justify-center">
                     <div className="relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-[#f7941e]/5 to-[#1e3a5f]/5">
-                      <img src={tab.image} alt={tab.label} className="h-auto w-full max-w-[280px] object-contain p-4" />
+                      <Image 
+                        src={tab.image} 
+                        alt={tab.label} 
+                        width={280} 
+                        height={280} 
+                        className="h-auto w-full max-w-[280px] object-contain p-4" 
+                      />
                     </div>
                   </div>
                 </motion.div>
@@ -416,7 +437,7 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center justify-center gap-6">
               <a href="/request-quote.html" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-8 py-4 font-bold text-white shadow-lg shadow-[#f7941e]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#f7941e]/30 hover:-translate-y-0.5">
                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <img src="/images/get-free-quote.gif" alt="" className="h-6 w-6" />
+                <Image src="/images/get-free-quote.gif" alt="" width={24} height={24} className="h-6 w-6" />
                 Request a Quote
               </a>
               <a href={`tel:${siteConfig.phone}`} className="inline-flex items-center gap-3 rounded-xl border-2 border-[#1e3a5f] px-8 py-4 font-bold text-[#1e3a5f] transition-all hover:bg-[#1e3a5f] hover:text-white">
@@ -424,7 +445,7 @@ export default function HomePage() {
                 {siteConfig.phone}
               </a>
             </div>
-            <p className="mt-8 max-w-4xl mx-auto text-base text-gray-600">
+            <p className="mt-8 max-w-4xl mx-auto text-base text-gray-700">
               RajSons Designs always keeps its services up-to-date with the latest trends in the market, providing its customers all over the world with high-end and easily extensible internet, intranet and extranet products. Services we offer range from creating custom website designs to developing business applications of any complexity.
             </p>
           </motion.div>
@@ -447,7 +468,7 @@ export default function HomePage() {
                   <div className={`group h-full rounded-2xl bg-gradient-to-br ${s.color} p-8 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden`}>
                     {s.img && (
                       <div className="absolute right-0 top-0 h-32 w-32 translate-x-6 -translate-y-6 opacity-10">
-                        <img src={s.img} alt="" className="h-full w-full object-contain" />
+                        <Image src={s.img} alt="" width={128} height={128} className="h-full w-full object-contain" />
                       </div>
                     )}
                     <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
@@ -572,7 +593,7 @@ export default function HomePage() {
                 className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1"
               >
                 <Quote size={24} className="mb-4 text-[#f7941e]/20" />
-                <p className="mb-6 text-sm leading-relaxed text-gray-600 italic">&ldquo;{t.text}&rdquo;</p>
+                <p className="mb-6 text-sm leading-relaxed text-gray-700 italic">&ldquo;{t.text}&rdquo;</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2a4a70] text-xs font-bold text-white">
                     {t.author.split(" ").map(w => w[0]).join("")}
@@ -619,7 +640,7 @@ export default function HomePage() {
                     </div>
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}>
-                    <p className="px-6 pb-5 text-sm leading-relaxed text-gray-600">{faq.a}</p>
+                    <p className="px-6 pb-5 text-sm leading-relaxed text-gray-700">{faq.a}</p>
                   </div>
                 </div>
               );
@@ -630,14 +651,27 @@ export default function HomePage() {
 
       {/* Final CTA */}  
       <section className="relative bg-gradient-to-br from-[#0f1f36] via-[#1a3355] to-[#0f1f36] py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/website-design-services-bg.jpg')] bg-cover bg-center opacity-[0.05]" />
+        <div className="absolute inset-0 opacity-[0.05]">
+          <Image 
+            src="/images/website-design-services-bg.jpg" 
+            alt="" 
+            fill 
+            className="object-cover" 
+          />
+        </div>
         <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <div className="mb-4 flex justify-center">
-              <img src="/images/contact-us.gif" alt="Contact Us" className="h-16 w-16" />
+              <Image 
+                src="/images/contact-us.gif" 
+                alt="Contact Us" 
+                width={64} 
+                height={64} 
+                className="h-16 w-16" 
+              />
             </div>
             <h2 className="mb-3 text-2xl font-bold text-white md:text-3xl">Become a part of our family</h2>
             <p className="mb-6 text-base text-gray-300">Speak to a Specialist</p>

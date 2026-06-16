@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -47,10 +48,10 @@ export default function Header() {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled ? "shadow-lg" : ""}`}>
+    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled ? "translate-y-0" : ""}`}>
       {/* Top Bar */}
-      <div className="bg-[#1e3a5f] text-white text-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between max-lg:justify-end px-6 py-1.5">
+      <div className={`bg-[#1e3a5f] text-white text-sm transition-all duration-500 ${scrolled ? "h-0 overflow-hidden opacity-0 py-0" : "py-1.5"}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between max-lg:justify-end px-6">
           <div className="hidden items-center gap-4 lg:flex">
             <a href="/web-design-packages.html" className="text-xs text-white/80 hover:text-[#f7941e] transition-colors font-semibold animate-pulse">
               Web Designing Packages
@@ -67,11 +68,11 @@ export default function Header() {
             </span>
             <a
               href="/request-quote.html"
-              className="rounded bg-[#f7941e] px-3 py-1 text-xs font-bold text-white transition-all hover:bg-[#e5840e]"
+              className="rounded bg-[#f7941e] px-4 py-2 text-xs font-bold text-white transition-all hover:bg-[#e5840e] min-h-[36px] flex items-center"
             >
               Request a Quote
             </a>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               {socialLinks.map((s) => {
                 const brandFill: Record<string, string> = {
                   facebook: "#1877F2",
@@ -86,12 +87,12 @@ export default function Header() {
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group h-6 w-6 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110 ${
+                    className={`group h-8 w-8 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110 ${
                       !["facebook", "instagram"].includes(s.icon) ? "hidden lg:flex" : "flex"
                     }`}
                     aria-label={s.name}
                   >
-                    <svg viewBox="0 0 24 24" className="h-3 w-3 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}>
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}>
                       <path d={socialIcons[s.icon]} />
                     </svg>
                   </a>
@@ -103,10 +104,17 @@ export default function Header() {
       </div>
 
       {/* Main Navigation */}
-      <div className={`transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md" : "bg-white"}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
+      <div className={`transition-all duration-500 ${scrolled ? "bg-white/70 backdrop-blur-xl border-b border-[#f7941e]/10 py-1 shadow-lg shadow-[#1e3a5f]/5" : "bg-white border-b border-transparent py-2"}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center group" title="RajSons Designs">
-            <img src="/images/logo.png" alt="RajSonsDesigns.com Logo" className="h-14 w-auto transition-transform group-hover:scale-105" />
+            <Image 
+              src="/images/logo.png" 
+              alt="RajSonsDesigns.com Logo" 
+              width={200} 
+              height={56} 
+              className={`w-auto transition-all duration-500 group-hover:scale-105 ${scrolled ? "h-10" : "h-14"}`} 
+              priority
+            />
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex" role="navigation" aria-label="Main navigation">
@@ -296,15 +304,15 @@ export default function Header() {
                 >
                   Request a Quote
                 </a>
-                <div className="flex justify-center gap-2 pt-1">
+                <div className="flex justify-center gap-4 pt-2">
                   {socialLinks.filter((s) => ["facebook", "instagram"].includes(s.icon)).map((s) => {
                     const brandFill: Record<string, string> = {
                       facebook: "#1877F2",
                       instagram: "#E4405F",
                     };
                     return (
-                      <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-8 w-8 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110" aria-label={s.name}>
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
+                      <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-11 w-11 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110 shadow-sm border border-gray-100" aria-label={s.name}>
+                        <svg viewBox="0 0 24 24" className="h-5 w-5 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
                       </a>
                     );
                   })}

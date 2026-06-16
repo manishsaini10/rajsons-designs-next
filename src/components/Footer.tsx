@@ -123,7 +123,7 @@ export default function Footer() {
                     </svg>
                     <a href="https://www.rajsonsdesigns.com" className="hover:text-[#f7941e] transition-colors">www.rajsonsdesigns.com</a>
                   </p>
-                  <div className="flex items-center gap-2 pt-2">
+                  <div className="flex items-center gap-3 pt-3">
                     {socials.map((s) => {
                       const brandFill: Record<string, string> = {
                         facebook: "#1877F2",
@@ -133,8 +133,8 @@ export default function Footer() {
                         instagram: "#E4405F",
                       };
                       return (
-                        <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-8 w-8 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110" aria-label={s.name}>
-                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
+                        <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110" aria-label={s.name}>
+                          <svg viewBox="0 0 24 24" className="h-5 w-5 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}><path d={socialIcons[s.icon]} /></svg>
                         </a>
                       );
                     })}
