@@ -84,36 +84,70 @@ body {
   position: fixed;
   left: 0;
   top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
-  background: #f7941e;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left top;
+  background: linear-gradient(135deg, #f7941e, #e67e22);
   color: white;
-  padding: 8px 20px;
+  padding: 7px 18px;
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 0 0 6px 6px;
-  z-index: 100;
-  transition: all 0.3s;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(247, 148, 30, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.feedback-btn svg {
+  width: 14px;
+  height: 14px;
+  transform: rotate(90deg);
+  flex-shrink: 0;
 }
 .feedback-btn:hover {
-  background: #e5840e;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  box-shadow: 0 6px 20px rgba(247, 148, 30, 0.45);
+  transform: rotate(-90deg) translateX(-50%) translateY(-3px);
+}
+.feedback-btn:active {
+  transform: rotate(-90deg) translateX(-50%) translateY(-1px) scale(0.98);
+}
+
+@media (max-width: 1024px) {
+  .feedback-btn {
+    padding: 6px 15px;
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 768px) {
   .feedback-btn {
-    font-size: 11px;
-    padding: 6px 14px;
-    top: 40%;
-    letter-spacing: 0.3px;
+    padding: 5px 12px;
+    font-size: 10px;
+    top: 45%;
   }
-  .feedback-btn:hover {
-    padding-top: 8px;
-    padding-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+  .feedback-btn {
+    padding: 4px 10px;
+    font-size: 9px;
+    top: 40%;
+    gap: 4px;
+  }
+  .feedback-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .feedback-btn {
+    top: 35%;
   }
 }
 

@@ -23,7 +23,13 @@ export const metadata: Metadata = {
   description: "A website designing company in Yamunanagar. We offer affordable website development and outsourcing services by professional web designers with a 100% money-back guarantee.",
   keywords: ["best website designing company in yamunanagar", "web development company yamunanagar", "web designers yamunanagar", "website design company yamunanagar", "website designers", "website development company in yamunanagar", "website designing", "it companies in yamunanagar", "website developer near me", "ecommerce website solution in yamunanagar", "dynamic website design in yamunanagar", "static website design", "social media marketing companies"],
   metadataBase: new URL("https://www.rajsonsdesigns.com"),
-  robots: { index: false, follow: false },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/favicon.svg",
+  },
+  robots: { index: true, follow: true },
   alternates: { canonical: "https://www.rajsonsdesigns.com/" },
   openGraph: {
     title: "Website Designing and Development in Yamunanagar Haryana.",
@@ -107,7 +113,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:p-2 focus:text-black focus:rounded">
           Skip to main content
         </a>
-        <a href="/contact-us.html" className="feedback-btn">Feedback</a>
+        <a href="/contact-us.html" className="feedback-btn" aria-label="Send Feedback">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Feedback
+        </a>
         <Header />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />

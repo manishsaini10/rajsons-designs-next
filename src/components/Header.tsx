@@ -86,7 +86,9 @@ export default function Header() {
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex h-6 w-6 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110"
+                    className={`group h-6 w-6 items-center justify-center rounded-full bg-white transition-all hover:bg-[#f7941e] hover:scale-110 ${
+                      !["facebook", "instagram"].includes(s.icon) ? "hidden lg:flex" : "flex"
+                    }`}
                     aria-label={s.name}
                   >
                     <svg viewBox="0 0 24 24" className="h-3 w-3 transition-colors group-hover:fill-white" style={{ fill: brandFill[s.icon] || "#1e3a5f" }}>
@@ -279,28 +281,25 @@ export default function Header() {
                 )}
               </div>
               <hr className="my-4 border-gray-100" />
-              <div className="space-y-3">
+              <div className="flex flex-row gap-2">
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="flex items-center justify-center gap-3 rounded-xl bg-[#1e3a5f] px-4 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#2a4a70]"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#1e3a5f] px-3 py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-[#2a4a70]"
                 >
-                  <Phone size={18} className="text-[#f7941e]" />
+                  <Phone size={16} className="text-[#f7941e]" />
                   {siteConfig.phone}
                 </a>
                 <a
                   href="/request-quote.html"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-3.5 text-center text-base font-bold text-white shadow-md transition-all hover:shadow-lg"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-3 py-3 text-center text-sm font-bold text-white shadow-md transition-all hover:shadow-lg"
                 >
                   Request a Quote
                 </a>
                 <div className="flex justify-center gap-2 pt-1">
-                  {socialLinks.map((s) => {
+                  {socialLinks.filter((s) => ["facebook", "instagram"].includes(s.icon)).map((s) => {
                     const brandFill: Record<string, string> = {
                       facebook: "#1877F2",
-                      twitter: "#000000",
-                      linkedin: "#0A66C2",
-                      youtube: "#FF0000",
                       instagram: "#E4405F",
                     };
                     return (

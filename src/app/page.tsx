@@ -26,7 +26,7 @@ function HeroSlider() {
   const bgImages = ["slide-rev-bg1.jpg", "website-design-services-bg.jpg", "website-design-services-bg.jpg", "slide-rev-bg1.jpg"];
 
   return (
-    <section className="relative min-h-[420px] overflow-hidden sm:min-h-[520px] md:min-h-[600px]" role="region" aria-label="Hero Slider" aria-roledescription="carousel">
+    <section className="relative min-h-[300px] overflow-hidden sm:min-h-[420px] md:min-h-[520px] lg:min-h-[600px]" role="region" aria-label="Hero Slider" aria-roledescription="carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -54,38 +54,38 @@ function HeroSlider() {
             <div className="max-w-2xl shrink-0">
               <motion.span
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-                className="inline-flex items-center gap-2 rounded-full border border-[#f7941e]/30 bg-[#f7941e]/10 px-5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#f7941e] backdrop-blur-sm mb-6"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#f7941e]/30 bg-[#f7941e]/10 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[#f7941e] backdrop-blur-sm mb-3 sm:px-4 sm:py-1 sm:text-[11px] sm:tracking-[0.15em] sm:mb-4 md:px-5 md:py-1.5 md:text-xs md:tracking-[0.2em] md:mb-6"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-[#f7941e] animate-pulse" />
                 {slide.title}
               </motion.span>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6 }}
-                className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+                className="mb-2 text-lg font-bold leading-tight text-white sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl sm:mb-3 md:mb-4"
               >
                 {slide.subtitle}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.6 }}
-                className="mb-8 max-w-xl text-base leading-relaxed text-gray-300 md:text-lg"
+                className="mb-4 max-w-xl text-[11px] leading-relaxed text-gray-300 sm:text-xs md:text-sm lg:text-base sm:mb-6 md:mb-8"
               >
                 {slide.description}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.6 }}
-                className="flex flex-wrap gap-4"
+                className="flex flex-wrap gap-2 sm:gap-3"
               >
                 {slide.cta1 && (
-                  <Link href={slide.cta1.href} className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#f7941e]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[#f7941e]/30 hover:-translate-y-0.5">
+                  <Link href={slide.cta1.href} className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-xl bg-gradient-to-r from-[#f7941e] to-[#e5840e] px-4 py-2 text-[11px] font-bold text-white shadow-lg shadow-[#f7941e]/25 transition-all duration-300 hover:shadow-xl hover:shadow-[#f7941e]/30 hover:-translate-y-0.5 sm:px-5 sm:py-2.5 sm:text-xs md:px-8 md:py-3.5 md:text-sm">
                     <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                     {slide.cta1.label}
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1 sm:size-[14px] md:size-4" />
                   </Link>
                 )}
                 {slide.cta2 && (
-                  <Link href={slide.cta2.href} className="group inline-flex items-center gap-2 rounded-xl border border-white/20 px-8 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:border-[#f7941e]/50 hover:bg-[#f7941e]/10 hover:shadow-lg hover:-translate-y-0.5 backdrop-blur-sm">
+                  <Link href={slide.cta2.href} className="group inline-flex items-center gap-1.5 rounded-xl border border-white/20 px-4 py-2 text-[11px] font-bold text-white transition-all duration-300 hover:border-[#f7941e]/50 hover:bg-[#f7941e]/10 hover:shadow-lg hover:-translate-y-0.5 backdrop-blur-sm sm:px-5 sm:py-2.5 sm:text-xs md:px-8 md:py-3.5 md:text-sm">
                     {slide.cta2.label}
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1 sm:size-[14px] md:size-4" />
                   </Link>
                 )}
               </motion.div>
@@ -103,13 +103,13 @@ function HeroSlider() {
         </AnimatePresence>
       </div>
 
-      <button onClick={prev} className="absolute left-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#f7941e] hover:scale-110" aria-label="Previous slide">
-        <ChevronLeft size={20} />
+      <button onClick={prev} className="absolute left-1 sm:left-3 md:left-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#f7941e] hover:scale-110 sm:p-2 md:p-3" aria-label="Previous slide">
+        <ChevronLeft size={12} className="sm:size-4 md:size-5" />
       </button>
-      <button onClick={next} className="absolute right-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#f7941e] hover:scale-110" aria-label="Next slide">
-        <ChevronRight size={20} />
+      <button onClick={next} className="absolute right-1 sm:right-3 md:right-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#f7941e] hover:scale-110 sm:p-2 md:p-3" aria-label="Next slide">
+        <ChevronRight size={12} className="sm:size-4 md:size-5" />
       </button>
-      <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-3 sm:bottom-5 md:bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 sm:gap-2 md:gap-3">
         {homeSliderSlides.map((_, i) => (
           <button
             key={i} onClick={() => setCurrent(i)}
